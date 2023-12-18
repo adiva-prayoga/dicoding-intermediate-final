@@ -1,0 +1,295 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #070e1d;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+ul,
+li,
+h1,
+p {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  padding: 15px 0;
+  margin-bottom: 15px;
+  background: #161d2d;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+}
+
+input,
+textarea {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: 16px;
+  color: #fff;
+  background-color: #070e1d;
+  border: 1px solid #172032;
+  border-radius: 8px;
+  padding: 15px 15px;
+
+  transition: all 0.3s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #66708c;
+}
+
+textarea {
+  height: 200px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+.form-section form input,
+.form-section form textarea {
+  margin-bottom: 15px;
+}
+
+.form-section form p {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.notes-section,
+.archive-notes-section {
+  margin-bottom: 25px;
+}
+
+.notes-section .title,
+.archive-notes-section .title {
+  font-size: 48px;
+  margin-bottom: 25px;
+}
+
+.search-section {
+  margin-bottom: 25px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+
+  border: 1px solid #172032;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+ul .empty-notes {
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-card {
+  width: 25%;
+  background: #161d2d;
+  padding: 20px;
+  border-radius: 15px;
+
+  border: 5px solid #070e1d;
+}
+
+.note-card-height {
+  height: 375px;
+}
+
+.note-card .wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 25px;
+}
+
+.note-card .wrap h1 {
+  font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.note-card .wrap .date {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #66708c;
+}
+
+.note-card .wrap .body {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin: 0;
+  line-height: 25px;
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 150px;
+  margin: 0 auto;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-card .wrap .note-action {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+button {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  width: 25%;
+  color: #fff;
+  margin-top: 10px;
+  padding: 15px 0px;
+  text-transform: capitalize;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #eb5757;
+}
+
+.archive-button {
+  background-color: #00c8af;
+}
+
+.submit-button {
+  background-color: #247dff;
+  cursor: pointer;
+}
+
+.default-button {
+  background-color: #247dff;
+}
+
+.form-section {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.form-section form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 70px);
+  text-align: center;
+}
+
+.not-found-section h1 {
+  font-size: 64px;
+}
+
+.detail-page-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-page-section h1 {
+  font-size: 64px;
+  margin-top: 50px;
+}
+
+.detail-page-section .date {
+  text-transform: uppercase;
+  color: #66708c;
+}
+
+.detail-page-section .body {
+  text-transform: capitalize;
+  margin: 0;
+  margin-top: 25px;
+  line-height: 25px;
+}
+
+@media screen and (min-width: 960px) {
+  button {
+    margin-top: 25px;
+  }
+  button:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  button {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  .note-card {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header nav input {
+    width: 100%;
+  }
+
+  .note-card {
+    width: 100%;
+  }
+}
