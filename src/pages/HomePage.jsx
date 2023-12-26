@@ -1,39 +1,71 @@
 import { useState, useEffect } from "react";
 
 import NoteList from "../components/NoteList";
+import SearchBar from "../components/SearchBar";
 
-import PropTypes from "prop-types";
+import { Link, useSearchParams } from "react-router-dom";
+
 import { getActiveNotes } from "../utils/network-data";
 
-function HomePage({ username, isDataFetching }) {
+function HomePage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeKeyword = searchParams.get("search");
+
   const [notes, setNotes] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const changeSearchParams = (keyword) => {
+    console.log("Changing search params:", keyword);
+    setSearchParams({ search: keyword });
+  };
+
+  const handleSearch = (searchResult) => {
+    console.log("Handling search:", searchResult);
+    changeSearchParams(searchResult);
+  };
+
+  const filterNotes = (keyword) => {
+    if (!keyword) {
+      return notes;
+    }
+
+    const lowerCaseKeyword = keyword.toLowerCase();
+    return notes.filter((note) =>
+      note.title.toLowerCase().includes(lowerCaseKeyword)
+    );
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await getActiveNotes();
+      setIsLoading(false);
+      setNotes(response.data);
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getActiveNotes();
-        setNotes(response.data);
-      } catch (error) {
-        console.error("Error fetching notes:", error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setSearchResult(() => filterNotes(activeKeyword, notes));
+  }, [activeKeyword, notes]);
 
   return (
     <section className="notes-section">
       <div className="container">
-        <h1>Hi {username}, Welcome to the HomePage</h1>
-        {isDataFetching && <p>Loading...</p>}
-        <NoteList notes={notes} />
+        <h1 className="title">Active Notes</h1>
+        <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
+        <NoteList notes={searchResult} isLoading={isLoading} />
+        <Link to="/notes/new">
+          <button className="default-button">Create note</button>
+        </Link>
       </div>
     </section>
   );
 }
-
-HomePage.propTypes = {
-  username: PropTypes.string.isRequired,
-};
 
 export default HomePage;
