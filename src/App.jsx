@@ -9,6 +9,7 @@ import {
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import ArchivedPage from "./pages/ArchivedPage";
 
 function App() {
   const [state, setState] = useState({
@@ -118,6 +119,7 @@ function App() {
               )
             }
           />
+          <Route path="/archives" element={<ArchivedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
