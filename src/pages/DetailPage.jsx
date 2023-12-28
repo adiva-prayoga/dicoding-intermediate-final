@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import NotFoundPage from "./NotFoundPage";
+import Icon from "../components/Icon";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -86,6 +87,13 @@ function DetailPage() {
               Archive
             </button>
           )}
+                <Icon
+                  name="ArchiveRestore"
+                  color="white"
+                  size={64}
+                  strokeWidth={1}
+                />
+                <Icon name="Archive" color="white" size={64} strokeWidth={1} />
 
           <button
             className="delete-button"
@@ -93,6 +101,7 @@ function DetailPage() {
           >
             Hapus
           </button>
+              <Icon name="Trash" color="white" size={64} strokeWidth={1} />
         </div>
       )}
     </section>
