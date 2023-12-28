@@ -54,6 +54,9 @@ nav {
   align-items: center;
 }
 
+svg.lucide.lucide-log-out {
+  margin-top: 5px;
+}
 input {
   width: 100%;
 }
