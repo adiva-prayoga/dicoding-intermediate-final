@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import NoteList from "../components/NoteList";
 import SearchBar from "../components/SearchBar";
+import Icon from "../components/Icon";
 
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -62,6 +63,7 @@ function HomePage() {
         <NoteList notes={searchResult} isLoading={isLoading} />
         <Link to="/notes/new">
           <button className="default-button">Create note</button>
+          <Icon name="PlusCircle" color="white" size={64} strokeWidth={1} />
         </Link>
       </div>
     </section>
