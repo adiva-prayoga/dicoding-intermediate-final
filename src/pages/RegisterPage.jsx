@@ -9,6 +9,7 @@ function RegisterPage() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (event) => {
@@ -19,7 +20,14 @@ function RegisterPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { name, email, password } = state;
+      const { name, email, password, confirmPassword } = state;
+
+      // Check if the password and confirm password match
+      if (password !== confirmPassword) {
+        alert("Password and confirm password do not match");
+        return;
+      }
+
       const { error } = await register({ name, email, password });
       if (!error) {
         navigate("/");
@@ -58,6 +66,14 @@ function RegisterPage() {
             name="password"
             placeholder="password"
             value={state.password}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="confirm password"
+            value={state.confirmPassword}
             onChange={handleChange}
             required
           />
