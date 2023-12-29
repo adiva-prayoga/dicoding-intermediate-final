@@ -9,6 +9,7 @@ import {
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import CreateNotePage from "./pages/CreateNotePage";
 import ArchivedPage from "./pages/ArchivedPage";
 
@@ -124,6 +125,7 @@ function App() {
           <Route path="/archives" element={<ArchivedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+            <Route path="/register" element={<RegisterPage />} />
       </main>
     </>
   );

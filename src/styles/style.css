@@ -61,6 +61,18 @@ input {
   width: 100%;
 }
 
+.register-link {
+  margin-top: 15px;
+}
+
+.register-link span {
+  margin-right: 5px;
+}
+
+.register-link a {
+  text-decoration: underline;
+  cursor: pointer;
+}
 input,
 textarea {
   font-family: "Plus Jakarta Sans", sans-serif !important;

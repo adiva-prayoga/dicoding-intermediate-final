@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+
 function LoginPage({
   email,
   password,
@@ -11,16 +13,18 @@ function LoginPage({
   return (
     <section className="notes-section">
       <div className="container">
-        <h1>Login</h1>
+        <h1 className="title">Login</h1>
         <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
             name="email"
             placeholder="email"
-            autoComplete="username"
+            autoComplete="email"
             value={email}
             onChange={handleChange}
           />
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -33,6 +37,10 @@ function LoginPage({
           <button type="submit" className="submit-button" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </button>
+          <div className="register-link">
+            <span>Don&apos;t have an account?</span>
+            <Link to="/register">Register</Link>
+          </div>
         </form>
       </div>
     </section>
