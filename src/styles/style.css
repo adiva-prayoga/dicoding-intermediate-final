@@ -11,8 +11,17 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   margin: 0;
   padding: 0;
-  color: #fff;
+  transition: all 0.3s;
+}
+
+body.light {
+  background-color: #f8f7f3;
+  color: #070e1d !important;
+}
+
+body.dark {
   background-color: #070e1d;
+  color: #fff !important;
 }
 
 .container {
@@ -24,7 +33,6 @@ body {
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 h1 {
@@ -42,10 +50,25 @@ p {
   margin: 0;
 }
 
-header {
+.header {
   padding: 15px 0;
   margin-bottom: 15px;
+}
+
+.header.light {
+  background: #fff;
+}
+
+.header.dark {
   background: #161d2d;
+}
+
+nav .logo.light a {
+  color: #070e1d;
+}
+
+nav .logo.dark a {
+  color: #fff;
 }
 
 nav {
@@ -59,17 +82,34 @@ nav .navbar-menu {
   align-items: center;
 }
 
-nav .navbar-menu .logout {
+nav .navbar-menu .logout,
+nav .navbar-menu .theme,
+nav .navbar-menu .locale {
   margin-left: 15px;
   cursor: pointer;
 }
 
-nav .navbar-menu .archive svg {
+nav .navbar-menu .archive svg,
+nav .navbar-menu .theme svg,
+nav .navbar-menu .locale svg {
   margin-top: 5px;
 }
 
 svg.lucide.lucide-log-out {
   margin-top: 5px;
+}
+
+nav .navbar-menu .locale,
+nav .navbar-menu .archive,
+nav .navbar-menu .theme,
+nav .navbar-menu .logout {
+  display: flex;
+  align-items: center;
+}
+
+nav .navbar-menu .locale span {
+  margin-right: 7px;
+  margin-top: 2px;
 }
 
 input {
@@ -94,6 +134,14 @@ input:not(:last-child) {
   cursor: pointer;
 }
 
+.register-link.light a {
+  color: #070e1d;
+}
+
+.register-link.dark a {
+  color: #fff;
+}
+
 input,
 textarea {
   font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -105,6 +153,12 @@ textarea {
   padding: 15px 15px;
 
   transition: all 0.3s;
+}
+
+input.light,
+textarea.light {
+  background-color: #f8f7f3;
+  color: #070e1d;
 }
 
 input::placeholder,
@@ -219,6 +273,12 @@ ul .empty-notes {
   border: 5px solid #070e1d;
 }
 
+.note-card.light {
+  background: #fff;
+
+  border: 5px solid #f8f7f3;
+}
+
 .note-card.active {
   width: 100%;
 }
@@ -234,10 +294,18 @@ ul .empty-notes {
   line-height: 25px;
 }
 
-.note-card .wrap h1 {
+.note-card .wrap .title {
   font-size: 16px;
   margin: 0;
   text-transform: uppercase;
+}
+
+.note-card .wrap .title.dark a {
+  color: #fff;
+}
+
+.note-card .wrap .title.light a {
+  color: #070e1d;
 }
 
 .note-card .wrap .date {

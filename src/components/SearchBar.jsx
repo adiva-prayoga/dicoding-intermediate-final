@@ -1,10 +1,14 @@
 import { useState } from "react";
 
 import Icon from "../components/Icon";
+import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 import PropTypes from "prop-types";
 
 function SearchBar({ activeKeyword, handleSearch }) {
+  const { theme } = useTheme();
+  const { language } = useLocale();
   const [keyword, setKeyword] = useState(activeKeyword || "");
 
   const handleSearchChange = (e) => {
@@ -17,10 +21,16 @@ function SearchBar({ activeKeyword, handleSearch }) {
 
   return (
     <section className="search-section">
-      <Icon name="Search" color="white" size={18} strokeWidth={2} />
+      <Icon
+        name="Search"
+        color={theme === "light" ? "#070e1d" : "#fff"}
+        size={18}
+        strokeWidth={2}
+      />
       <input
+        className={theme === "light" ? "light" : "dark"}
         type="text"
-        placeholder="Search notes..."
+        placeholder={language === "en" ? "Search notes..." : "Cari catatan..."}
         value={keyword}
         onChange={handleSearchChange}
       />

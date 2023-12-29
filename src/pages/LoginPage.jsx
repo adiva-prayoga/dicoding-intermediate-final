@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 
 import { Link } from "react-router-dom";
 
+import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
+
 function LoginPage({
   email,
   password,
@@ -10,13 +13,20 @@ function LoginPage({
   isLoading,
   error,
 }) {
+  const { theme } = useTheme();
+  const { language } = useLocale();
   return (
     <section className="notes-section">
       <div className="container">
-        <h1 className="title">Login</h1>
+        <h1 className="title">
+          {language === "en"
+            ? "Login to use app, please."
+            : "Yuk, login untuk menggunakan aplikasi."}
+        </h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="text"
             name="email"
             placeholder="email"
@@ -26,6 +36,7 @@ function LoginPage({
           />
           <label htmlFor="password">Password</label>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="password"
             name="password"
             placeholder="password"
@@ -37,9 +48,17 @@ function LoginPage({
           <button type="submit" className="submit-button" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </button>
-          <div className="register-link">
-            <span>Don&apos;t have an account?</span>
-            <Link to="/register">Register</Link>
+          <div
+            className={`register-link ${theme === "light" ? "light" : "dark"}`}
+          >
+            <span>
+              {language === "en"
+                ? "Don't have an account?"
+                : "Belum punya akun?"}
+            </span>
+            <Link to="/register">
+              {language === "en" ? "Register here" : "Daftar di sini"}
+            </Link>
           </div>
         </form>
       </div>
