@@ -83,18 +83,33 @@ nav .navbar-menu {
 }
 
 nav .navbar-menu .logout,
-nav .navbar-menu .theme {
+nav .navbar-menu .theme,
+nav .navbar-menu .locale {
   margin-left: 15px;
   cursor: pointer;
 }
 
 nav .navbar-menu .archive svg,
-nav .navbar-menu .theme svg {
+nav .navbar-menu .theme svg,
+nav .navbar-menu .locale svg {
   margin-top: 5px;
 }
 
 svg.lucide.lucide-log-out {
   margin-top: 5px;
+}
+
+nav .navbar-menu .locale,
+nav .navbar-menu .archive,
+nav .navbar-menu .theme,
+nav .navbar-menu .logout {
+  display: flex;
+  align-items: center;
+}
+
+nav .navbar-menu .locale span {
+  margin-right: 7px;
+  margin-top: 2px;
 }
 
 input {

@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index";
 
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 function NoteList({ notes, isLoading, isListLayout }) {
   const { theme } = useTheme();
+  const { language } = useLocale();
 
   return (
     <section className="note-list-section">
@@ -15,7 +17,9 @@ function NoteList({ notes, isLoading, isListLayout }) {
       ) : (
         <ul>
           {notes.length === 0 ? (
-            <p className="empty-notes">Tidak ada catatan</p>
+            <p className="empty-notes">
+              {language === "en" ? "No Notes" : "Tidak ada catatan"}
+            </p>
           ) : (
             notes.map((note) => (
               <li

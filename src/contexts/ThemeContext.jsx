@@ -1,4 +1,3 @@
-// ThemeContext.js
 import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
@@ -7,7 +6,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const storedTheme = localStorage.getItem("theme");
-  const [theme, setTheme] = useState(storedTheme || "light"); // Default theme
+  const [theme, setTheme] = useState(storedTheme || "light");
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";

@@ -1,11 +1,16 @@
 import Icon from "../components/Icon";
 
+import { useLocale } from "../contexts/LocaleContext";
+
 import PropTypes from "prop-types";
 
 function NoteListControl({ activeItem, handleItemClick, searchResult }) {
+  const { language } = useLocale();
   return (
     <section className="note-list-control">
-      <div className="count">Total: {searchResult.length} Notes</div>
+      <div className="count">
+        Total: {searchResult.length} {language === "en" ? "Notes" : "Catatan"}
+      </div>
       <div className="layout-control">
         <div
           className={`item ${activeItem === 0 ? "active" : ""}`}

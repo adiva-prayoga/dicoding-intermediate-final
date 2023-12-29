@@ -4,11 +4,14 @@ import NoteList from "../components/NoteList";
 import NoteListControl from "../components/NoteListControl";
 import SearchBar from "../components/SearchBar";
 
+import { useLocale } from "../contexts/LocaleContext";
+
 import { useSearchParams } from "react-router-dom";
 
 import { getArchivedNotes } from "../utils/network-data";
 
 function ArchivedPage() {
+  const { language } = useLocale();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeKeyword = searchParams.get("search");
 
@@ -69,7 +72,9 @@ function ArchivedPage() {
   return (
     <section className="archive-notes-section">
       <div className="container">
-        <h1 className="title">Archived Notes</h1>
+        <h1 className="title">
+          {language === "en" ? "Archived Notes" : "Catatan Arsip"}
+        </h1>
         <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
         <NoteListControl
           handleItemClick={handleItemClick}

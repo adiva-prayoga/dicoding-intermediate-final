@@ -5,11 +5,14 @@ import NoteListControl from "../components/NoteListControl";
 import SearchBar from "../components/SearchBar";
 import Icon from "../components/Icon";
 
+import { useLocale } from "../contexts/LocaleContext";
+
 import { Link, useSearchParams } from "react-router-dom";
 
 import { getActiveNotes } from "../utils/network-data";
 
 function HomePage() {
+  const { language } = useLocale();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeKeyword = searchParams.get("search");
 
@@ -70,7 +73,9 @@ function HomePage() {
   return (
     <section className="notes-section">
       <div className="container">
-        <h1 className="title">Active Notes</h1>
+        <h1 className="title">
+          {language === "en" ? "Active Notes" : "Catatan Aktif"}
+        </h1>
         <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
         <NoteListControl
           handleItemClick={handleItemClick}

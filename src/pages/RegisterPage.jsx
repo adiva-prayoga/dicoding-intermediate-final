@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 import { register } from "../utils/network-data";
 
 function RegisterPage() {
   const { theme } = useTheme();
+  const { language } = useLocale();
   const navigate = useNavigate();
   const [state, setState] = useState({
     name: "",
@@ -43,7 +47,11 @@ function RegisterPage() {
   return (
     <section className="register-section">
       <div className="container">
-        <h1 className="title">Register</h1>
+        <h1 className="title">
+          {language === "en"
+            ? "Fill the form to register account."
+            : "Isi form untuk mendaftar akun."}
+        </h1>
         <form>
           <label htmlFor="name">Username</label>
           <input
@@ -89,8 +97,20 @@ function RegisterPage() {
             className="submit-button"
             onClick={handleSubmit}
           >
-            Register
+            {language === "en" ? "Register" : "Daftar"}
           </button>
+          <div
+            className={`register-link ${theme === "light" ? "light" : "dark"}`}
+          >
+            <span>
+              {language === "en"
+                ? "Already have an account?"
+                : "Sudah punya akun?"}
+            </span>
+            <Link to="/register">
+              {language === "en" ? "Login here" : "Login di sini"}
+            </Link>
+          </div>
         </form>
       </div>
     </section>

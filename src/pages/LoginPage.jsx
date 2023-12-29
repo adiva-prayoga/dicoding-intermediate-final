@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { useTheme } from "../contexts/ThemeContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 function LoginPage({
   email,
@@ -13,10 +14,15 @@ function LoginPage({
   error,
 }) {
   const { theme } = useTheme();
+  const { language } = useLocale();
   return (
     <section className="notes-section">
       <div className="container">
-        <h1 className="title">Login</h1>
+        <h1 className="title">
+          {language === "en"
+            ? "Login to use app, please."
+            : "Yuk, login untuk menggunakan aplikasi."}
+        </h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
           <input
@@ -45,8 +51,14 @@ function LoginPage({
           <div
             className={`register-link ${theme === "light" ? "light" : "dark"}`}
           >
-            <span>Don&apos;t have an account?</span>
-            <Link to="/register">Register</Link>
+            <span>
+              {language === "en"
+                ? "Don't have an account?"
+                : "Belum punya akun?"}
+            </span>
+            <Link to="/register">
+              {language === "en" ? "Register here" : "Daftar di sini"}
+            </Link>
           </div>
         </form>
       </div>
