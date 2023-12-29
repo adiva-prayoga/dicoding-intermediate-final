@@ -75,7 +75,10 @@ function ArchivedPage() {
         <h1 className="title">
           {language === "en" ? "Archived Notes" : "Catatan Arsip"}
         </h1>
-        <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
+        <SearchBar
+          handleSearch={handleSearch}
+          activeKeyword={activeKeyword ? activeKeyword : ""}
+        />
         <NoteListControl
           handleItemClick={handleItemClick}
           activeItem={activeItem}
