@@ -107,9 +107,8 @@ function App() {
   return (
     <>
       <Navbar
-        userLogged={state.userLogged}
+        userLogged={state.userLogged ? true : false}
         handleUserLogout={handleUserLogout}
-        checkUserLogged={checkUserLogged}
       />
       <main>
         {!state.isDataFetching && (
