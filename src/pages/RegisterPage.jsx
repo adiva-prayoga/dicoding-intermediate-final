@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useTheme } from "../contexts/ThemeContext";
+
 import { register } from "../utils/network-data";
 
 function RegisterPage() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [state, setState] = useState({
     name: "",
@@ -44,6 +47,7 @@ function RegisterPage() {
         <form>
           <label htmlFor="name">Username</label>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="text"
             name="name"
             placeholder="username"
@@ -53,6 +57,7 @@ function RegisterPage() {
           />
           <label htmlFor="email">Email</label>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="text"
             name="email"
             placeholder="email"
@@ -62,6 +67,7 @@ function RegisterPage() {
           />
           <label htmlFor="password">Password</label>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="password"
             name="password"
             placeholder="password"
@@ -70,6 +76,7 @@ function RegisterPage() {
             required
           />
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="password"
             name="confirmPassword"
             placeholder="confirm password"

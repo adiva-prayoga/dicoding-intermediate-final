@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index";
 
+import { useTheme } from "../contexts/ThemeContext";
+
 function NoteList({ notes, isLoading, isListLayout }) {
+  const { theme } = useTheme();
+
   return (
     <section className="note-list-section">
       {isLoading ? (
@@ -16,10 +20,14 @@ function NoteList({ notes, isLoading, isListLayout }) {
             notes.map((note) => (
               <li
                 key={note.id}
-                className={`note-card ${isListLayout && "active"}`}
+                className={`note-card ${isListLayout && "active"} ${
+                  theme === "light" ? "light" : "dark"
+                }`}
               >
                 <div className="wrap">
-                  <h1 className="title">
+                  <h1
+                    className={`title ${theme === "light" ? "light" : "dark"}`}
+                  >
                     <Link to={`/notes/${note.id}`}>{note.title}</Link>
                   </h1>
                   <p className="date">{showFormattedDate(note.createdAt)}</p>
