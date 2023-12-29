@@ -72,36 +72,27 @@ function DetailPage() {
           <p className="date">{showFormattedDate(note.createdAt)}</p>
           <p className="body">{note.body}</p>
 
-          {note.archived ? (
-            <button
-              className="archive-button"
-              onClick={() => handleUnarchiveNote(noteId)}
-            >
-              Unarchive
-            </button>
-          ) : (
-            <button
-              className="archive-button"
-              onClick={() => handleArchiveNote(noteId)}
-            >
-              Archive
-            </button>
-          )}
+          <div className="detail-button">
+            {note.archived ? (
+              <div className="btn" onClick={() => handleUnarchiveNote(noteId)}>
                 <Icon
                   name="ArchiveRestore"
                   color="white"
                   size={64}
                   strokeWidth={1}
                 />
-                <Icon name="Archive" color="white" size={64} strokeWidth={1} />
 
-          <button
-            className="delete-button"
-            onClick={() => handleDeleteNote(noteId)}
-          >
-            Hapus
-          </button>
+              </div>
+            ) : (
+              <div className="btn" onClick={() => handleArchiveNote(noteId)}>
+                <Icon name="Archive" color="white" size={64} strokeWidth={1} />
+              </div>
+            )}
+
+            <div className="btn" onClick={() => handleDeleteNote(noteId)}>
               <Icon name="Trash" color="white" size={64} strokeWidth={1} />
+            </div>
+          </div>
         </div>
       )}
     </section>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import NoteList from "../components/NoteList";
+import NoteListControl from "../components/NoteListControl";
 import SearchBar from "../components/SearchBar";
 import Icon from "../components/Icon";
 
@@ -16,13 +17,24 @@ function HomePage() {
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [activeItem, setActiveItem] = useState(1);
+  const [isListLayout, setIsListLayout] = useState(false);
+
+  const handleItemClick = (itemIndex) => {
+    setActiveItem(itemIndex);
+
+    if (itemIndex === 1) {
+      setIsListLayout(false);
+    } else {
+      setIsListLayout(true);
+    }
+  };
+
   const changeSearchParams = (keyword) => {
-    console.log("Changing search params:", keyword);
     setSearchParams({ search: keyword });
   };
 
   const handleSearch = (searchResult) => {
-    console.log("Handling search:", searchResult);
     changeSearchParams(searchResult);
   };
 
@@ -60,9 +72,17 @@ function HomePage() {
       <div className="container">
         <h1 className="title">Active Notes</h1>
         <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
-        <NoteList notes={searchResult} isLoading={isLoading} />
-        <Link to="/notes/new">
-          <button className="default-button">Create note</button>
+        <NoteListControl
+          handleItemClick={handleItemClick}
+          activeItem={activeItem}
+          searchResult={searchResult}
+        />
+        <NoteList
+          notes={searchResult}
+          isLoading={isLoading}
+          isListLayout={isListLayout}
+        />
+        <Link to="/notes/new" className="add-note-button">
           <Icon name="PlusCircle" color="white" size={64} strokeWidth={1} />
         </Link>
       </div>
