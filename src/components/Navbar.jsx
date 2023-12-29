@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Icon from "../components/Icon";
@@ -7,21 +6,22 @@ import { useLocale } from "../contexts/LocaleContext";
 
 import PropTypes from "prop-types";
 
-function Navbar({ userLogged, handleUserLogout, checkUserLogged }) {
+function Navbar({ userLogged, handleUserLogout }) {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLocale } = useLocale();
 
-  useEffect(() => {
-    checkUserLogged();
-  }, []);
+  const themeClass = theme === "light" ? "light" : "dark";
+
+  const isUserLogged = userLogged ? true : false;
+
   return (
-    <header className={`header ${theme === "light" ? "light" : "dark"}`}>
+    <header className={`header ${themeClass}`}>
       <nav className="container">
-        <div className={`logo ${theme === "light" ? "light" : "dark"}`}>
+        <div className={`logo ${themeClass}`}>
           <Link to="/">Adiva Notes</Link>
         </div>
-        <div className={`navbar-menu ${theme === "light" ? "light" : "dark"}`}>
-          {userLogged && (
+        <div className={`navbar-menu ${themeClass}`}>
+          {isUserLogged ? (
             <div className="archive">
               <Link to="/archives">
                 <Icon
@@ -32,7 +32,7 @@ function Navbar({ userLogged, handleUserLogout, checkUserLogged }) {
                 />
               </Link>
             </div>
-          )}
+          ) : null}
 
           <div className="locale" onClick={toggleLocale}>
             <span>{language === "en" ? "English" : "Indonesia"}</span>
@@ -52,8 +52,9 @@ function Navbar({ userLogged, handleUserLogout, checkUserLogged }) {
             />
           </div>
 
-          {userLogged && (
+          {isUserLogged && (
             <div className="logout" onClick={handleUserLogout}>
+              <span>{userLogged.name}</span>
               <Icon name="LogOut" color="#FF6767" size={24} strokeWidth={2} />
             </div>
           )}
@@ -66,7 +67,6 @@ function Navbar({ userLogged, handleUserLogout, checkUserLogged }) {
 Navbar.propTypes = {
   userLogged: PropTypes.bool.isRequired,
   handleUserLogout: PropTypes.func.isRequired,
-  checkUserLogged: PropTypes.func.isRequired,
 };
 
 export default Navbar;

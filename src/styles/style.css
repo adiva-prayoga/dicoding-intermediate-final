@@ -107,7 +107,8 @@ nav .navbar-menu .logout {
   align-items: center;
 }
 
-nav .navbar-menu .locale span {
+nav .navbar-menu .locale span,
+nav .navbar-menu .logout span {
   margin-right: 7px;
   margin-top: 2px;
 }

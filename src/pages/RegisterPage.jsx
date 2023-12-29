@@ -60,6 +60,7 @@ function RegisterPage() {
             name="name"
             placeholder="username"
             value={state.name}
+            autoComplete="username"
             onChange={handleChange}
             required
           />
@@ -70,6 +71,7 @@ function RegisterPage() {
             name="email"
             placeholder="email"
             value={state.email}
+            autoComplete="email"
             onChange={handleChange}
             required
           />
@@ -80,6 +82,7 @@ function RegisterPage() {
             name="password"
             placeholder="password"
             value={state.password}
+            autoComplete="new-password"
             onChange={handleChange}
             required
           />
@@ -89,6 +92,7 @@ function RegisterPage() {
             name="confirmPassword"
             placeholder="confirm password"
             value={state.confirmPassword}
+            autoComplete="new-password"
             onChange={handleChange}
             required
           />

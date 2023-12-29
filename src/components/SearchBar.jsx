@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 function SearchBar({ activeKeyword, handleSearch }) {
   const { theme } = useTheme();
   const { language } = useLocale();
-  const [keyword, setKeyword] = useState(activeKeyword || "");
+  const [keyword, setKeyword] = useState(activeKeyword);
 
   const handleSearchChange = (e) => {
     const { value } = e.target;
