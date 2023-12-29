@@ -107,7 +107,7 @@ function RegisterPage() {
                 ? "Already have an account?"
                 : "Sudah punya akun?"}
             </span>
-            <Link to="/register">
+            <Link to="/">
               {language === "en" ? "Login here" : "Login di sini"}
             </Link>
           </div>

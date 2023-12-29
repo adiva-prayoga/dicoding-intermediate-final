@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import { addNote } from "../utils/network-data";
 
+import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 
 function CreateNotePage() {
+  const { theme } = useTheme();
   const { language } = useLocale();
   const navigate = useNavigate();
   const [note, setNote] = useState({
@@ -56,6 +58,7 @@ function CreateNotePage() {
             {note.maxTitleLength - note.title.length}
           </p>
           <input
+            className={theme === "light" ? "light" : "dark"}
             type="text"
             name="title"
             placeholder={language === "en" ? "Title" : "Ini adalah judul..."}
@@ -64,6 +67,7 @@ function CreateNotePage() {
             required
           />
           <textarea
+            className={theme === "light" ? "light" : "dark"}
             name="body"
             placeholder={
               language === "en"
