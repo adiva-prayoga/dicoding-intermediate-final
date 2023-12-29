@@ -1,14 +1,52 @@
 import { useState, useEffect } from "react";
 
 import NoteList from "../components/NoteList";
+import NoteListControl from "../components/NoteListControl";
 import SearchBar from "../components/SearchBar";
 
-import PropTypes from "prop-types";
+import { useSearchParams } from "react-router-dom";
+
 import { getArchivedNotes } from "../utils/network-data";
 
 function ArchivedPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeKeyword = searchParams.get("search");
+
   const [notes, setNotes] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [activeItem, setActiveItem] = useState(1);
+  const [isListLayout, setIsListLayout] = useState(false);
+
+  const handleItemClick = (itemIndex) => {
+    setActiveItem(itemIndex);
+
+    if (itemIndex === 1) {
+      setIsListLayout(false);
+    } else {
+      setIsListLayout(true);
+    }
+  };
+
+  const changeSearchParams = (keyword) => {
+    setSearchParams({ search: keyword });
+  };
+
+  const handleSearch = (searchResult) => {
+    changeSearchParams(searchResult);
+  };
+
+  const filterNotes = (keyword) => {
+    if (!keyword) {
+      return notes;
+    }
+
+    const lowerCaseKeyword = keyword.toLowerCase();
+    return notes.filter((note) =>
+      note.title.toLowerCase().includes(lowerCaseKeyword)
+    );
+  };
 
   const fetchData = async () => {
     try {
@@ -24,27 +62,28 @@ function ArchivedPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setSearchResult(() => filterNotes(activeKeyword, notes));
+  }, [activeKeyword, notes]);
+
   return (
     <section className="archive-notes-section">
       <div className="container">
         <h1 className="title">Archived Notes</h1>
-        <SearchBar />
-        <NoteList notes={notes} isLoading={isLoading} />
+        <SearchBar handleSearch={handleSearch} activeKeyword={activeKeyword} />
+        <NoteListControl
+          handleItemClick={handleItemClick}
+          activeItem={activeItem}
+          searchResult={searchResult}
+        />
+        <NoteList
+          notes={searchResult}
+          isLoading={isLoading}
+          isListLayout={isListLayout}
+        />
       </div>
     </section>
   );
 }
-
-ArchivedPage.propTypes = {
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      archivedAt: PropTypes.string.isRequired,
-    })
-  ),
-};
 
 export default ArchivedPage;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index";
 
-function NoteList({ notes, isLoading }) {
+function NoteList({ notes, isLoading, isListLayout }) {
   return (
     <section className="note-list-section">
       {isLoading ? (
@@ -14,13 +14,18 @@ function NoteList({ notes, isLoading }) {
             <p className="empty-notes">Tidak ada catatan</p>
           ) : (
             notes.map((note) => (
-              <li key={note.id} className="note-card">
+              <li
+                key={note.id}
+                className={`note-card ${isListLayout && "active"}`}
+              >
                 <div className="wrap">
                   <h1 className="title">
                     <Link to={`/notes/${note.id}`}>{note.title}</Link>
                   </h1>
                   <p className="date">{showFormattedDate(note.createdAt)}</p>
-                  <p className="body">{note.body}</p>
+                  <p className={`body ${isListLayout && "active"}`}>
+                    {note.body}
+                  </p>
                 </div>
               </li>
             ))
@@ -34,6 +39,7 @@ function NoteList({ notes, isLoading }) {
 NoteList.propTypes = {
   notes: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isListLayout: PropTypes.bool.isRequired,
 };
 
 export default NoteList;
