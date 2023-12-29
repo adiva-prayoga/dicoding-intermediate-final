@@ -81,6 +81,7 @@ function DetailPage() {
                   size={64}
                   strokeWidth={1}
                 />
+
               </div>
             ) : (
               <div className="btn" onClick={() => handleArchiveNote(noteId)}>
