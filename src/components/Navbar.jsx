@@ -13,7 +13,6 @@ function Navbar({ userLogged, handleUserLogout }) {
   const themeClass = theme === "light" ? "light" : "dark";
 
   const isUserLogged = userLogged ? true : false;
-
   return (
     <header className={`header ${themeClass}`}>
       <nav className="container">
