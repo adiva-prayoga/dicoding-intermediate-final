@@ -1,16 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Icon from "../components/Icon";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
+import { useAuth } from "../contexts/AuthContext";
 
-import PropTypes from "prop-types";
+import { putAccessToken } from "../utils/network-data";
+import { useEffect } from "react";
 
-function Navbar({ userLogged, handleUserLogout }) {
+function Navbar() {
+  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLocale } = useLocale();
+  const { userLogged, setState } = useAuth();
 
   const themeClass = theme === "light" ? "light" : "dark";
+
+  const handleUserLogout = () => {
+    putAccessToken("");
+    setState((prev) => ({
+      ...prev,
+      userLogged: null,
+    }));
+
+    navigate("/");
+  };
 
   const isUserLogged = userLogged ? true : false;
 
@@ -63,10 +77,5 @@ function Navbar({ userLogged, handleUserLogout }) {
     </header>
   );
 }
-
-Navbar.propTypes = {
-  userLogged: PropTypes.bool.isRequired,
-  handleUserLogout: PropTypes.func.isRequired,
-};
 
 export default Navbar;
