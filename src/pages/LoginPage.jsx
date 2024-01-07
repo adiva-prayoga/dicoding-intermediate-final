@@ -1,20 +1,28 @@
-import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
+import { useAuth } from "../contexts/AuthContext";
 
-function LoginPage({
-  email,
-  password,
-  handleChange,
-  handleSubmit,
-  isLoading,
-  error,
-}) {
+function LoginPage() {
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const { language } = useLocale();
+  const {
+    email,
+    password,
+    handleSubmit,
+    handleChange,
+    isLoading,
+    error,
+    isDataFetching,
+    userLogged,
+  } = useAuth();
+
+  !isDataFetching && userLogged && navigate("/");
+
   return (
     <section className="notes-section">
       <div className="container">
@@ -65,14 +73,5 @@ function LoginPage({
     </section>
   );
 }
-
-LoginPage.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.string,
-};
 
 export default LoginPage;
