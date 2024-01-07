@@ -12,6 +12,7 @@ function Navbar({ userLogged, handleUserLogout }) {
 
   const themeClass = theme === "light" ? "light" : "dark";
 
+  const isUserLogged = userLogged ? true : false;
   return (
     <header className={`header ${themeClass}`}>
       <nav className="container">
@@ -19,7 +20,7 @@ function Navbar({ userLogged, handleUserLogout }) {
           <Link to="/">Adiva Notes</Link>
         </div>
         <div className={`navbar-menu ${themeClass}`}>
-          {userLogged ? (
+          {isUserLogged ? (
             <div className="archive">
               <Link to="/archives">
                 <Icon
@@ -50,8 +51,9 @@ function Navbar({ userLogged, handleUserLogout }) {
             />
           </div>
 
-          {userLogged && (
+          {isUserLogged && (
             <div className="logout" onClick={handleUserLogout}>
+              <span>{userLogged.name}</span>
               <Icon name="LogOut" color="#FF6767" size={24} strokeWidth={2} />
             </div>
           )}

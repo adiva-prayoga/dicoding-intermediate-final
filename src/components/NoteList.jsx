@@ -34,7 +34,11 @@ function NoteList({ notes, isLoading, isListLayout }) {
           <h1 className={`title ${theme === "light" ? "light" : "dark"}`}>
             <Link to={`/notes/${note.id}`}>{note.title}</Link>
           </h1>
-          <p className="date">{showFormattedDate(note.createdAt)}</p>
+          <p className="date">
+            {language === "en"
+              ? showFormattedDate(note.createdAt, "en-US")
+              : showFormattedDate(note.createdAt, "id-ID")}
+          </p>
           <p className={`body ${isListLayout && "active"}`}>{note.body}</p>
         </div>
       </li>

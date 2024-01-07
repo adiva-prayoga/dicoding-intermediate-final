@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import NotFoundPage from "./NotFoundPage";
 import Icon from "../components/Icon";
 
+import { useLocale } from "../contexts/LocaleContext";
+
 import { useParams, useNavigate } from "react-router-dom";
 
 import {
@@ -14,6 +16,7 @@ import {
 import { showFormattedDate } from "../utils/index";
 
 function DetailPage() {
+  const { language } = useLocale();
   const navigate = useNavigate();
   const { noteId } = useParams();
   const [note, setNote] = useState([]);
@@ -69,7 +72,12 @@ function DetailPage() {
       ) : (
         <div className="container">
           <h1 className="title">{note.title}</h1>
-          <p className="date">{showFormattedDate(note.createdAt)}</p>
+          <p className="date">
+            {" "}
+            {language === "en"
+              ? showFormattedDate(note.createdAt, "en-US")
+              : showFormattedDate(note.createdAt, "id-ID")}
+          </p>
           <p className="body">{note.body}</p>
 
           <div className="detail-button">
