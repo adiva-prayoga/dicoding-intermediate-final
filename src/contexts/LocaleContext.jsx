@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 
 const LocalContext = createContext();
 
-export const useLocale = () => useContext(LocalContext);
+export const useLocale = () => {
+  const localContext = useContext(LocalContext);
+  if (!localContext) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return localContext;
+};
 
 export const LocaleProvider = ({ children }) => {
   const storedLocale = localStorage.getItem("locale");

@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 
 const ThemeContext = createContext();
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+  const themeContext = useContext(ThemeContext);
+  if (!themeContext) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return themeContext;
+};
 
 export const ThemeProvider = ({ children }) => {
   const storedTheme = localStorage.getItem("theme");

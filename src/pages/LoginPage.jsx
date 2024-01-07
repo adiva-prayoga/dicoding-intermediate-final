@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLocale } from "../contexts/LocaleContext";
 import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -21,7 +22,9 @@ function LoginPage() {
     userLogged,
   } = useAuth();
 
-  !isDataFetching && userLogged && navigate("/");
+  useEffect(() => {
+    !isDataFetching && userLogged && navigate("/");
+  });
 
   return (
     <section className="notes-section">

@@ -6,7 +6,6 @@ import { useLocale } from "../contexts/LocaleContext";
 import { useAuth } from "../contexts/AuthContext";
 
 import { putAccessToken } from "../utils/network-data";
-import { useEffect } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
