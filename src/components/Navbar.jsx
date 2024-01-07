@@ -27,7 +27,6 @@ function Navbar() {
   };
 
   const isUserLogged = userLogged ? true : false;
-
   return (
     <header className={`header ${themeClass}`}>
       <nav className="container">
